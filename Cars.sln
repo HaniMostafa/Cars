@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars", "Cars\Cars.csproj", "{FBECFA36-9909-444A-965B-4FC02308EDA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.DataAccess", "Cars.DataAccess\Cars.DataAccess.csproj", "{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{389A2EFB-CD45-427F-B181-797A1809A7F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{FBECFA36-9909-444A-965B-4FC02308EDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBECFA36-9909-444A-965B-4FC02308EDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBECFA36-9909-444A-965B-4FC02308EDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
