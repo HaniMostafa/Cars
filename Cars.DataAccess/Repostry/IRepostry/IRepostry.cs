@@ -9,8 +9,8 @@ namespace Cars.DataAccess.Repostry.IRepostry
 {
     public interface IRepostry<T> where T : class
     {
-        public IEnumerable<T> GetAll();
-        public T Get(Expression<Func<T,bool>> filters);
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filters=null,string ? InCludeProprty=null);
+        public T Get(Expression<Func<T,bool>> filters, string? InCludeProprty = null);
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);

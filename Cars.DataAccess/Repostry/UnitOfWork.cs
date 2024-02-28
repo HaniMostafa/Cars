@@ -12,12 +12,16 @@ namespace Cars.DataAccess.Repostry
     {
         private readonly ApplicationDbContext _db;
         public KindOfCarRepostry KindCar { get; private set; }
+        public CarRepostry car { get; private set; }
+        public OwnerRepostry owner { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             KindCar=new KindOfCarRepostry(_db);
+            car=new CarRepostry(_db);
+            owner=new OwnerRepostry(_db);
         }
 
       

@@ -18,6 +18,7 @@ namespace Cars.DataAccess.Repostry
         public Repostry(ApplicationDbContext db)
         {
             _db = db;
+            _db.Cars.Include(a => a.KindOfCar);
             this._dbSet = _db.Set<T>();
         }
 
@@ -26,17 +27,41 @@ namespace Cars.DataAccess.Repostry
             _dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filters)
+        public T Get(Expression<Func<T, bool>> filters, string? InCludeProprty = null)
         {
             IQueryable<T> query = _dbSet;
             query = query.Where(filters);
+            if (!string.IsNullOrEmpty(InCludeProprty))
+            {
+                foreach (var includePror in InCludeProprty.Split(new char[] { '-' }
+                , StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includePror);
+
+                }
+
+            }
             return query.FirstOrDefault();
 
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filters=null, string? InCludeProprty = null)
         {
             IQueryable<T> query = _dbSet;
+            if (filters!=null)
+            {
+                query.Where(filters);
+            }
+            if (!string.IsNullOrEmpty(InCludeProprty))
+            {
+                foreach (var includePror in InCludeProprty.Split(new char[] { '-' }
+                , StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includePror);
+
+                }
+
+            }
             return query.ToList();
         }
 

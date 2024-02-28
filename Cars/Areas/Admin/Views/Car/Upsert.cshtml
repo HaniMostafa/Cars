@@ -1,0 +1,135 @@
+﻿@model CarVm
+@{
+    ViewData["Title"] = "Create Product";
+
+}
+
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-graident ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.car.Id != 0 ? "Update" : "Create")  Car</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="class card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        <input hidden asp-for="car.Id" />
+                        <input hidden asp-for="car.ImgUrl" />
+
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Title" class="form-control border-0 shadow" />
+                            <label asp-for="car.Title" class="ms-2"></label>
+                            <span asp-validation-for="car.Title" class="text-danger"></span>
+                        </div>
+                        <div class=" py-2 col-12">
+                            <label asp-for="car.Description" class="ms-2"></label>
+
+                            <textarea asp-for="car.Description" class="form-control  text-muted border-0 shadow"></textarea>
+                            <span asp-validation-for="car.Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Kilometer" class="form-control border-0 shadow" />
+                            <label asp-for="car.Kilometer" class="ms-2"></label>
+                            <span asp-validation-for="car.Kilometer" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Year" class="form-control border-0 shadow" />
+                            <label asp-for="car.Year" class="ms-2"></label>
+                            <span asp-validation-for="car.Year" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Horsepower" class="form-control border-0 shadow" />
+                            <label asp-for="car.Horsepower" class="ms-2"></label>
+                            <span asp-validation-for="car.Horsepower" class="text-danger"></span>
+                        </div>       
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Color" class="form-control border-0 shadow" />
+                            <label asp-for="car.Color" class="ms-2"></label>
+                            <span asp-validation-for="car.Color" class="text-danger"></span>
+                        </div>       
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.NumberOfDoors" class="form-control border-0 shadow" />
+                            <label asp-for="car.NumberOfDoors" class="ms-2"></label>
+                            <span asp-validation-for="car.NumberOfDoors" class="text-danger"></span>
+                        </div>     
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.NumberCylinders" class="form-control border-0 shadow" />
+                            <label asp-for="car.NumberCylinders" class="ms-2"></label>
+                            <span asp-validation-for="car.NumberCylinders" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Trim" class="form-control border-0 shadow" />
+                            <label asp-for="car.Trim" class="ms-2"></label>
+                            <span asp-validation-for="car.Trim" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.FuelType" class="form-control border-0 shadow" />
+                            <label asp-for="car.FuelType" class="ms-2"></label>
+                            <span asp-validation-for="car.FuelType" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.BodyType" class="form-control border-0 shadow" />
+                            <label asp-for="car.BodyType" class="ms-2"></label>
+                            <span asp-validation-for="car.BodyType" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="file" onchange="readURL(this);" class="form-control border-0 shadow" />
+                            <label asp-for="car.ImgUrl" class="ms-2"></label>
+                            <span asp-validation-for="car.ImgUrl"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="car.KindOfCarId" class="form-control select-control border-0 shadow" asp-items="@Model.LstKindCar">
+                                <option disabled selected>--Select KindOfCar--</option>
+                            </select>
+                            <label asp-for="car.KindOfCarId" class="ms-2"></label>
+                            <span asp-validation-for="car.KindOfCarId" class="text-danger"></span>
+                        </div>
+                        <div class="row  pt-2">
+                            <div class="col-6 col-md-3">
+                                <button type="submit" class="btn btn-primary form-control"> @(Model.car.Id != 0 ? "Update" : "Create")  Car</button>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Car" asp-action="Index" class="btn btn-outline-primary border form-control">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <img id="previewImage" src="@Model.car.ImgUrl" width="100%"
+                         style="border-radius:5px; border:1px solid #bbb9b9" />
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
