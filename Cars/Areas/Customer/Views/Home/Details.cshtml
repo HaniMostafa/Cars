@@ -1,0 +1,130 @@
+﻿@model Car
+@section Style {
+    <link href="~/details/css/all.css" rel="stylesheet" />
+    <link href="~/details/css/all.min.css" rel="stylesheet" />
+    <link href="~/details/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/details/css/details.css" rel="stylesheet" />
+    <link href="~/details/css/normalize.css" rel="stylesheet" />
+}
+<!-- start details -->
+<div class="details">
+    <div class="container">
+        <div class="box">
+            <div class="container">
+                <div class="box-info">
+                    @if (Model.CarImages != null && Model.CarImages.Count > 0)
+                    {
+                        <div id="carouselExampleIndicators" class="carousel  slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+
+                                @foreach (var imageWithIndex in
+                               Model.CarImages
+                               .Select((image, index) => new { Image = image, Index = index }))
+                                {
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index"
+                                            class="@(imageWithIndex.Index==0?"active":"")" aria-current="true" aria-label="Slide 1"></button>
+                                }
+
+
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach (var imageWithIndex in
+                               Model.CarImages
+                               .Select((image, index) => new { Image = image, Index = index }))
+                                {
+                                    <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
+                                        <img src="@imageWithIndex.Image.ImgUrl" class="d-block w-100" alt="...">
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" style="background-color:black; opacity:10%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" style="background-color:black;opacity:10%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="box-info">
+                    <div class="kiki">
+                        <div class="kiki1">
+                            <h2>Car : @Model.Title</h2>
+                            <p class="phone">Phone: @Model.Owner.Phone</p>
+                            <p class="phone">OwnerName: @Model.Owner.Name</p>
+                            <h4>Price : @Model.Price.ToString()</h4>
+                            <div class="car-D">
+                                <h3>Car Details</h3>
+                                <i class="fa-solid fa-table-list"></i>
+                            </div>
+                            <p>Description: @Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end details -->
+<!-- start item view -->
+<div class="item-overview">
+    <h2 class="main-title">Item Overview</h2>
+    <div class="container">
+        <div class="container">
+            <div class="box">
+                <span>Trim:</span>
+                <div class="div">
+                    <i class="fa-regular fa-star"></i>
+                    <p>@Model.Trim</p>
+                </div>
+            </div>
+            <div class="box">
+                <span>Year:</span>
+                <div class="div">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <p>@Model.Year</p>
+                </div>
+            </div>
+            <div class="box">
+                <span>Kilometers:</span>
+                <div class="div">
+                    <i class="fa-regular fa-compass"></i>
+                    <p>@Model.Kilometer</p>
+                </div>
+            </div>
+            <div class="box">
+                <span>doors:</span>
+                <div class="div">
+                    <i class="fa-solid fa-car-on"></i>
+                    <p>@Model.NumberOfDoors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end item view -->
+<!-- start addition details -->
+<div class="addition">
+    <h2 class="main-title">Additional Details</h2>
+    <div class="container">
+        <div class="container">
+            <div class="box">
+                <p><span>NumberOfCliders:</span> @Model.NumberCylinders</p>
+                <p><span>BodyType:</span> @Model.BodyType</p>
+                <p><span>Color:</span>@Model.Color</p>
+                <p><span>FuelType:</span> @Model.FuelType</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end addition details -->
+@section Scripts {
+    <script src="~/details/js/bootstrap.bundle.min.js"></script>
+
+}

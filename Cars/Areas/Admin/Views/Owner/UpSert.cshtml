@@ -1,0 +1,102 @@
+﻿@model Owner
+
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-graident ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Id != 0 ? "Update" : "Create")  Car</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="class card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        <input asp-for="Image" hidden />
+
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Name" class="form-control border-0 shadow" />
+                            <label asp-for="Name" class="ms-2"></label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class=" py-2 col-12">
+                            <label asp-for="Phone" class="ms-2"></label>
+
+                            <textarea asp-for="Phone" class="form-control  text-muted border-0 shadow"></textarea>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="FaceBookUrl" class="form-control border-0 shadow" />
+                            <label asp-for="FaceBookUrl" class="ms-2"></label>
+                            <span asp-validation-for="FaceBookUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Olx" class="form-control border-0 shadow" />
+                            <label asp-for="Olx" class="ms-2"></label>
+                            <span asp-validation-for="Olx" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Instigram" class="form-control border-0 shadow" />
+                            <label asp-for="Instigram" class="ms-2"></label>
+                            <span asp-validation-for="Instigram" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Gps" class="form-control border-0 shadow" />
+                            <label asp-for="Gps" class="ms-2"></label>
+                            <span asp-validation-for="Gps" class="text-danger"></span>
+                        </div>  
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Twitter" class="form-control border-0 shadow" />
+                            <label asp-for="Twitter" class="ms-2"></label>
+                            <span asp-validation-for="Twitter" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="file" onchange="readURL(this);" class="form-control border-0 shadow" />
+                            <label asp-for="Image" class="ms-2"></label>
+                        </div>
+                        <div class="row  pt-2">
+                            <div class="col-6 col-md-3">
+                                <button type="submit" class="btn btn-primary form-control"> @(Model.Id != 0 ? "Update" : "Create")  Owner</button>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Owner" asp-action="Index" class="btn btn-outline-primary border form-control">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <img id="previewImage" src="@Model.Image" width="100%"
+                         style="border-radius:5px; border:1px solid #bbb9b9" />
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
