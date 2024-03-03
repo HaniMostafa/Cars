@@ -12,6 +12,7 @@ namespace Cars.DataAccess.Repostry.IRepostry
         public KindOfCarRepostry KindCar { get;  }
         public CarRepostry car { get;  }
         public OwnerRepostry owner { get;  }
+        public ImgCarRepostry ImageCar { get;  }
 
     }
 }

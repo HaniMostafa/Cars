@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars", "Cars\Cars.csproj", "{FBECFA36-9909-444A-965B-4FC02308EDA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cars", "Cars\Cars.csproj", "{FBECFA36-9909-444A-965B-4FC02308EDA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars.DataAccess", "Cars.DataAccess\Cars.DataAccess.csproj", "{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cars.DataAccess", "Cars.DataAccess\Cars.DataAccess.csproj", "{23CC4B69-4929-4E56-AC5F-0CCFEBF2733A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{389A2EFB-CD45-427F-B181-797A1809A7F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{389A2EFB-CD45-427F-B181-797A1809A7F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utalties", "Utalties\Utalties.csproj", "{D25A9ED0-558F-4025-9829-A6427DACB5B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{389A2EFB-CD45-427F-B181-797A1809A7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25A9ED0-558F-4025-9829-A6427DACB5B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25A9ED0-558F-4025-9829-A6427DACB5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25A9ED0-558F-4025-9829-A6427DACB5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25A9ED0-558F-4025-9829-A6427DACB5B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

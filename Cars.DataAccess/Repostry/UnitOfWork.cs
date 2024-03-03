@@ -15,6 +15,7 @@ namespace Cars.DataAccess.Repostry
         public CarRepostry car { get; private set; }
         public OwnerRepostry owner { get; private set; }
 
+        public ImgCarRepostry ImageCar { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -22,6 +23,7 @@ namespace Cars.DataAccess.Repostry
             KindCar=new KindOfCarRepostry(_db);
             car=new CarRepostry(_db);
             owner=new OwnerRepostry(_db);
+            ImageCar = new ImgCarRepostry(_db);
         }
 
       

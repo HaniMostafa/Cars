@@ -15,7 +15,10 @@ namespace Models
         public string Horsepower { get; set; }
         public string Color { get; set; }
         public string BodyType{ get; set; }
-        public string ? ImgUrl{ get; set; }
+        public double  Price { get; set; }
+        //public string ? ImgUrl{ get; set; }
+        [ValidateNever]
+        public List<CarImg> CarImages { get; set; }
         public int NumberOfDoors { get; set; }
         public int NumberCylinders{ get; set; }
 
@@ -24,6 +27,11 @@ namespace Models
         [ForeignKey("KindOfCarId")]
         [ValidateNever]
         public KindOfCar KindOfCar { get; set; }
+        public int OwnerId { get; set; }
+
+        [ForeignKey("OwnerId")]
+        [ValidateNever]
+        public Owner Owner { get; set; }
 
     }
 }

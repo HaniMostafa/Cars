@@ -1,11 +1,15 @@
 ﻿using Cars.DataAccess.Repostry.IRepostry;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Utalties;
 
 namespace Cars.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+
     public class KindOfCarController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

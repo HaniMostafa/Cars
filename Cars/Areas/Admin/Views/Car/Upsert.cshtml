@@ -23,8 +23,7 @@
                 <div class="col-10">
                     <div class="border p-3">
                         <input hidden asp-for="car.Id" />
-                        <input hidden asp-for="car.ImgUrl" />
-
+ 
 
                         <div class="form-floating py-2 col-12">
                             <input asp-for="car.Title" class="form-control border-0 shadow" />
@@ -51,6 +50,11 @@
                             <input asp-for="car.Horsepower" class="form-control border-0 shadow" />
                             <label asp-for="car.Horsepower" class="ms-2"></label>
                             <span asp-validation-for="car.Horsepower" class="text-danger"></span>
+                        </div> 
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="car.Price" class="form-control border-0 shadow" />
+                            <label asp-for="car.Price" class="ms-2"></label>
+                            <span asp-validation-for="car.Price" class="text-danger"></span>
                         </div>       
                         <div class="form-floating py-2 col-12">
                             <input asp-for="car.Color" class="form-control border-0 shadow" />
@@ -83,16 +87,20 @@
                             <span asp-validation-for="car.BodyType" class="text-danger"></span>
                         </div>
                         <div class="form-floating py-2 col-12">
-                            <input type="file" name="file" onchange="readURL(this);" class="form-control border-0 shadow" />
-                            <label asp-for="car.ImgUrl" class="ms-2"></label>
-                            <span asp-validation-for="car.ImgUrl"></span>
+                            <input type="file" name="files" multiple onchange="readURL(this);" class="form-control border-0 shadow" />
+                            <label asp-for="car.CarImages" class="ms-2"></label>
                         </div>
                         <div class="form-floating py-2 col-12">
                             <select asp-for="car.KindOfCarId" class="form-control select-control border-0 shadow" asp-items="@Model.LstKindCar">
                                 <option disabled selected>--Select KindOfCar--</option>
                             </select>
                             <label asp-for="car.KindOfCarId" class="ms-2"></label>
-                            <span asp-validation-for="car.KindOfCarId" class="text-danger"></span>
+                        </div>   
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="car.OwnerId" class="form-control select-control border-0 shadow" asp-items="@Model.LstOwner">
+                                <option disabled selected>--Select Owner--</option>
+                            </select>
+                            <label asp-for="car.KindOfCarId" class="ms-2"></label>
                         </div>
                         <div class="row  pt-2">
                             <div class="col-6 col-md-3">
@@ -105,10 +113,25 @@
                     </div>
 
                 </div>
-                <div class="col-2">
+              @*   <div class="col-2">
                     <img id="previewImage" src="@Model.car.ImgUrl" width="100%"
                          style="border-radius:5px; border:1px solid #bbb9b9" />
 
+                </div> *@
+                <div class="col-2">
+                    @if (Model.car.CarImages != null)
+                    {
+                        foreach (var image in Model.car.CarImages)
+                        {
+                            <div class="border p-1 m-2 text-center">
+                                <img id="previewImage" src="@image.ImgUrl" width="100%"
+                                     style="border-radius:5px; border:1px solid #bbb9b9" />
+                                <a asp-action="DeleteImage" class="btn btn-danger" asp-route-imageId="@image.Id">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </div>
+                        }
+                    }
                 </div>
 
             </div>

@@ -18,7 +18,7 @@ namespace Cars.DataAccess.Repostry
         public Repostry(ApplicationDbContext db)
         {
             _db = db;
-            _db.Cars.Include(a => a.KindOfCar);
+            _db.Cars.Include(a => a.KindOfCar).Include(a=>a.Owner).Include(a=>a.CarImages);
             this._dbSet = _db.Set<T>();
         }
 

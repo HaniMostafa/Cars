@@ -9,5 +9,8 @@ namespace Models.ViewModel
         public Car car { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> LstKindCar { get; set; }
+        [ValidateNever]
+
+        public IEnumerable<SelectListItem> LstOwner { get; set; }
     }
 }

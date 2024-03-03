@@ -1,46 +1,29 @@
-$white: #ffffff;
-$black: #000000;
-$primary1: #f7444e;
-$primary2: #002c3e;
-$textCol: #1f1f1f;
 
-// import fonts -  font-family: 'Poppins', sans-serif and  font-family: 'Playfair Display', serif
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-
-@mixin main-font {
-  font-family: 'Poppins', sans-serif;
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+.divider-text:before,
+.divider-text:after {
+    color: white;
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #555;
+    margin: auto 0.25rem;
+    box-shadow: 0 -2px;
 }
 
-@mixin second-font {
-  font-family: 'Playfair Display', serif;
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
-@mixin hero_btn($col1, $col2, $pad1, $pad2, $bRadius) {
-  display: inline-block;
-  padding: $pad1 $pad2;
-  background-color: $col1;
-  border: 1px solid $col1;
-  color: $col2;
-  border-radius: $bRadius;
-  transition: all 0.3s;
 
-  &:hover {
-    background-color: transparent;
-    color: $col1;
-  }
-}
 
-@mixin upperBold {
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-body {
-  @include main-font;
-  color: #0c0c0c;
-  background-color: #ffffff;
-  overflow-x: hidden;
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .layout_padding {
@@ -67,26 +50,13 @@ body {
   padding-bottom: 90px;
 }
 
-h1,
-h2 {
-  @include second-font();
-}
 
 .heading_container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
-  h2 {
-    position: relative;
-    margin-bottom: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
 
-    span {
-      color: $primary1;
-    }
-  }
 
   p {
     margin-top: 10px;
@@ -805,5 +775,14 @@ a:focus {
     }
   }
 }
-
+.kiki{
+    position:absolute;
+   bottom:90px;
+   right:20%;
+  
+}
+.kiki1 {
+    margin-right:170px;
+    
+}
 // end footer section

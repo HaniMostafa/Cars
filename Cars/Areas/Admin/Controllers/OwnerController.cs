@@ -1,12 +1,13 @@
 ﻿using Cars.DataAccess.Repostry.IRepostry;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Models.ViewModel;
 using Models;
+using Microsoft.AspNetCore.Authorization;
+using Utalties;
 
 namespace Cars.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
 
     public class OwnerController : Controller
     {
@@ -23,8 +24,10 @@ namespace Cars.Areas.Admin.Controllers
 
             public IActionResult Index()
             {
+            IEnumerable<Owner> owners = _unitOfWork.owner.GetAll();
 
-                return View();
+
+            return View(owners);
             }
             [HttpGet]
             public IActionResult UpSert(int? id)
@@ -44,97 +47,85 @@ namespace Cars.Areas.Admin.Controllers
 
 
             }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult UpSert(CarVm obj, IFormFile? file)
-        //{
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpSert(Owner obj, IFormFile? file)
+        {
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        string WwwRootPath = _webHostEnvironment.WebRootPath;
-        //        if (file != null)
-        //        {
-        //            string FileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-        //            string ProductPath = Path.Combine(WwwRootPath, @"Imagess\Cars");
-
-
-
-        //            if (!string.IsNullOrEmpty(obj.car.ImgUrl))
-        //            {
-        //                //delete old image 
-        //                var OldImagePath = Path.Combine(WwwRootPath, obj.car.ImgUrl.TrimStart('\\'));
-        //                if (System.IO.File.Exists(OldImagePath))
-        //                {
-        //                    System.IO.File.Delete(OldImagePath);
+            if (ModelState.IsValid)
+            {
+                string WwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string FileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string ProductPath = Path.Combine(WwwRootPath, @"Imagess\Owner");
 
 
-        //                }
 
-        //            }
-        //            using (var FileStream = new FileStream(Path.Combine(ProductPath, FileName), FileMode.Create))
-        //            {
-        //                file.CopyTo(FileStream);
-        //            }
-        //            obj.car.ImgUrl = @"\Imagess\Cars\" + FileName;
-        //        }
+                    if (!string.IsNullOrEmpty(obj.Image))
+                    {
+                        //delete old image 
+                        var OldImagePath = Path.Combine(WwwRootPath, obj.Image.TrimStart('\\'));
+                        if (System.IO.File.Exists(OldImagePath))
+                        {
+                            System.IO.File.Delete(OldImagePath);
 
-        //        if (obj.car.Id == 0)
-        //        {
 
-        //            _unitOfWork.car.Add(obj.car);
-        //            _unitOfWork.Save();
-        //            TempData["Success"] = "Category is Created Successfully";
-        //            return RedirectToAction("Index");
-        //        }
-        //        else
-        //        {
-        //            _unitOfWork.car.Update(obj.car);
-        //            _unitOfWork.Save();
-        //            TempData["Success"] = "Category is Updated Successfully";
-        //            return RedirectToAction("Index");
-        //        }
+                        }
 
-        //    }
-        //    else
-        //    {
-        //        obj.LstKindCar = _unitOfWork.KindCar.GetAll().Select(u => new SelectListItem
-        //        {
-        //            Text = u.Name,
-        //            Value = u.Id.ToString()
-        //        });
-        //        return View(obj);
-        //    }
-        //}
+                    }
+                    using (var FileStream = new FileStream(Path.Combine(ProductPath, FileName), FileMode.Create))
+                    {
+                        file.CopyTo(FileStream);
+                    }
+                    obj.Image = @"\Imagess\Owner\" + FileName;
+                }
+
+                if (obj.Id == 0)
+                {
+
+                    _unitOfWork.owner.Add(obj);
+                    _unitOfWork.Save();
+                    TempData["Success"] = "Category is Created Successfully";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    _unitOfWork.owner.Update(obj);
+                    _unitOfWork.Save();
+                    TempData["Success"] = "Category is Updated Successfully";
+                    return RedirectToAction("Index");
+                }
+
+            }
+            else
+            {
+              
+                return View(obj);
+            }
+        }
 
         
-        [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Delete(int id)
         {
-            IEnumerable<Owner> owners = _unitOfWork.owner.GetAll();
-            return Json(new { data = owners });
+            var ProductToBeDeleted = _unitOfWork.owner.Get(u => u.Id == id);
+            if (ProductToBeDeleted == null)
+            {
+                return NotFound();
+
+            }
+            var OldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, ProductToBeDeleted.Image.TrimStart('\\'));
+            if (System.IO.File.Exists(OldImagePath))
+            {
+                System.IO.File.Delete(OldImagePath);
+
+
+            }
+            _unitOfWork.owner.Remove(ProductToBeDeleted);
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
+
         }
-        //[HttpDelete]
-        //public IActionResult Delete(int id)
-        //{
-        //    var ProductToBeDeleted = _unitOfWork.car.Get(u => u.Id == id);
-        //    if (ProductToBeDeleted == null)
-        //    {
-        //        return Json(new { success = false, message = "Error while deleting" });
-
-        //    }
-        //    var OldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, ProductToBeDeleted.ImgUrl.TrimStart('\\'));
-        //    if (System.IO.File.Exists(OldImagePath))
-        //    {
-        //        System.IO.File.Delete(OldImagePath);
-
-
-        //    }
-        //    _unitOfWork.car.Remove(ProductToBeDeleted);
-        //    _unitOfWork.Save();
-        //    return Json(new { success = true, message = "Deleted Successfully" });
-
-        //}
-        //#endregion
 
     }
 }

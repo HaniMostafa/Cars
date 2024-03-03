@@ -1139,6 +1139,16 @@ form input[type="submit"]:focus {
     font-size: 15px;
     font-weight: 400;
 }
-
+.koko {
+    position: absolute;
+    bottom: 80px;
+    transform: translateY(10%);
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: top left;
+    object-position: top left;
+    border-radius: 10%; /* Makes the image round */
+     
+}
 
 

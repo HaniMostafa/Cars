@@ -1,10 +1,9 @@
-﻿<section class="home">
+﻿@model HomeVm
+<section class="home">
     <!-- Main banner with a call-to-action button -->
     <div class="home-content">
         <h1>Car Dealing Experience.</h1>
         <h3>Redefined!</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium aliquam neque eaque eum commodi assumenda exercitationem quisquam aperiam facilis labore nemo, repellendus perferendis, autem velit libero rem ullam.</p>
-        <a href="#" class="btn btn-primary">Explore Cars</a>
     </div>
 
     <!-- Decorative image with styling in style.css -->
@@ -28,38 +27,43 @@
         </div>
     </div>
 </section>
-<!-- end why section -->
-<!-- arrival section -->
 <section class="arrival_section">
     <div class="container">
         <div class="box">
-            <img class="koko" src="images/aeeee.jpg" alt="">
+            <img class="koko" src="@Model.Owners[0].Image" width="400" height="400" alt="">
             <div class="row">
                 <div class="col-md-6 ml-auto">
                     <div class="heading_container remove_line_bt">
                         <h2>
-                            Hany Mostafa
+                         Owner: @Model.Owners[0].Name
+                        </h2> 
+                        <h2>
+                       Phone : @Model.Owners[0].Phone
                         </h2>
                     </div>
-                    <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-                    </p>
+                    <h5 style="margin-top: 20px;margin-bottom: 30px;">
+                        يمكنك العثور على سيارات جديدة بأحدث الموديلات، بالإضافة إلى سيارات مستعملة بحالة ممتازة
+                    </h5>
 
-                    <ul>
-                        <li> <i class="bi bi-facebook"></i> </li>
-                        <li> <i class="bi bi-instagram"></i> </li>
-                        <li> <i class="bi bi-twitter"></i> </li>
-                        <li> <i class="bi bi-pinterest"></i> </li>
-                        <li> <i class="bi bi-youtube"></i> </li>
+                    <ul style="display:flex;list-style-type: none;gap:10px;">
+                        <li> 
+                            <a href="@Model.Owners[0].FaceBookUrl"><i class="bi bi-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="@Model.Owners[0].Gps"><i class="bi bi-geo-alt"></i></a>
+                        </li>
+                        <li>
+                            <a href="@Model.Owners[0].Instigram"><i class="bi bi-instagram"></i></a>
+                        </li>
+                       
                     </ul>
 
-                    <a href="#" class="btn">Details</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- end arrival section -->
+<!-- end arrival section --><!-- end arrival section -->
 <!-- product section -->
 <section class="product_section layout_padding">
     <div class="container">
@@ -69,229 +73,39 @@
             </h2>
         </div>
         <div class="row">
+            @foreach (var item in Model.Carss)
+            {
+                
+            
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="box">
                     <div class="option_container">
                         <div class="options">
-                            <a href="" class="btn">
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id" class="btn">
                                 Details
                             </a>
                         </div>
                     </div>
                     <div class="img-box">
-                        <img src="images/1.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Tesla
-                        </h5>
-                        <h6>
-                            $7500
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
+                      @if(item.CarImages!=null && item.CarImages.Count() > 0) {
+                            <img src="@item.CarImages.FirstOrDefault().ImgUrl" class="card-img-top rounded" />
+                        }
+                        else {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                        } 
                         </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/2.jpg" alt="">
-                    </div>
                     <div class="detail-box">
                         <h5>
-                            Bentley
+                            @item.Title
                         </h5>
                         <h6>
-                            $8000
+                                @item.Price.ToString()
                         </h6>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/3.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Porsche
-                        </h5>
-                        <h6>
-                            $68000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/4.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Audi
-                        </h5>
-                        <h6>
-                            $70000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/5.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Aston Martin
-                        </h5>
-                        <h6>
-                            $75000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/6.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Lincoln
-                        </h5>
-                        <h6>
-                            $58000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/7.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Nissan
-                        </h5>
-                        <h6>
-                            $80000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/8.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Chevrolet
-                        </h5>
-                        <h6>
-                            $62000
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="" class="btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="images/9.jpg" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Rolls-Royce
-                        </h5>
-                        <h6>
-                            $95000
-                        </h6>
-                    </div>
-                </div>
-            </div>
+            }
+            
         </div>
     </div>
 </section>
-<!-- end product section -->
-<!-- subscribe section -->
-<section class="arrival_section">
-    <div class="container">
-        <div class="box">
-            <img class="pop" src="images/aeeee.jpg" alt="">
-            <div class="row">
-                <div class="col-md-6 ml-auto">
-                    <div class="heading_container remove_line_bt">
-                        <h2>
-                            Hany Mostafa
-                        </h2>
-                    </div>
-                    <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
-                    </p>
-                    <a href="">
-                        Details
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end subscribe section -->
