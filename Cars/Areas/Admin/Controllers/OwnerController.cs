@@ -15,7 +15,6 @@ namespace Cars.Areas.Admin.Controllers
             private readonly IUnitOfWork _unitOfWork;
             private readonly IWebHostEnvironment _webHostEnvironment;
 
-
             public OwnerController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
             {
                 _unitOfWork = unitOfWork;
@@ -25,14 +24,13 @@ namespace Cars.Areas.Admin.Controllers
             public IActionResult Index()
             {
             IEnumerable<Owner> owners = _unitOfWork.owner.GetAll();
-
-
             return View(owners);
             }
+
             [HttpGet]
             public IActionResult UpSert(int? id)
             {
-
+                    
                 if (id == 0 || id == null)
                 {
 
@@ -41,17 +39,18 @@ namespace Cars.Areas.Admin.Controllers
                 else
                 {
                     var Owner = _unitOfWork.owner.Get(u => u.Id == id);
-                    return View(Owner);
-
+                if (Owner == null)
+                {
+                    return NotFound("بس يا حبيبي");
                 }
-
-
+                    return View(Owner);
+                }
             }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpSert(Owner obj, IFormFile? file)
         {
-
             if (ModelState.IsValid)
             {
                 string WwwRootPath = _webHostEnvironment.WebRootPath;
@@ -59,8 +58,6 @@ namespace Cars.Areas.Admin.Controllers
                 {
                     string FileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string ProductPath = Path.Combine(WwwRootPath, @"Imagess\Owner");
-
-
 
                     if (!string.IsNullOrEmpty(obj.Image))
                     {
@@ -72,7 +69,6 @@ namespace Cars.Areas.Admin.Controllers
 
 
                         }
-
                     }
                     using (var FileStream = new FileStream(Path.Combine(ProductPath, FileName), FileMode.Create))
                     {
@@ -96,7 +92,6 @@ namespace Cars.Areas.Admin.Controllers
                     TempData["Success"] = "Category is Updated Successfully";
                     return RedirectToAction("Index");
                 }
-
             }
             else
             {
@@ -118,7 +113,6 @@ namespace Cars.Areas.Admin.Controllers
             if (System.IO.File.Exists(OldImagePath))
             {
                 System.IO.File.Delete(OldImagePath);
-
 
             }
             _unitOfWork.owner.Remove(ProductToBeDeleted);

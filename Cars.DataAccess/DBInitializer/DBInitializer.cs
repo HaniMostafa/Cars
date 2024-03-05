@@ -40,7 +40,10 @@ namespace Cars.DataAccess.DBInitializer
                     _db.Database.Migrate();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+
+            }
 
 
 

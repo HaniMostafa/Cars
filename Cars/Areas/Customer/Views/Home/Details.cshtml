@@ -6,7 +6,8 @@
     <link href="~/details/css/details.css" rel="stylesheet" />
     <link href="~/details/css/normalize.css" rel="stylesheet" />
 }
-<!-- start details -->
+
+@*  <!-- start details -->
 <div class="details">
     <div class="container">
         <div class="box">
@@ -48,13 +49,10 @@
                         </div>
 
                     }
-
                 </div>
             </div>
             <div class="container">
-                <div class="box-info">
-                    <div class="kiki">
-                        <div class="kiki1">
+                <div class="box-info">      
                             <h2>Car : @Model.Title</h2>
                             <p class="phone">Phone: @Model.Owner.Phone</p>
                             <p class="phone">OwnerName: @Model.Owner.Name</p>
@@ -69,11 +67,76 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 <!-- end details -->
+ *@
+ 
+
+ <!-- Start About -->
+<section id="about" class="about bg-white mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 test">
+                <div class="hero-img">
+                    @if (Model.CarImages != null && Model.CarImages.Count > 0)
+                    {
+                        <div id="carouselExampleIndicators" class="carousel  slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+
+                                @foreach (var imageWithIndex in
+                               Model.CarImages
+                               .Select((image, index) => new { Image = image, Index = index }))
+                                {
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index"
+                                            class="@(imageWithIndex.Index==0?"active":"")" aria-current="true" aria-label="Slide 1"></button>
+                                }
+
+
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach (var imageWithIndex in
+                               Model.CarImages
+                               .Select((image, index) => new { Image = image, Index = index }))
+                                {
+                                    <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
+                                        <img src="@imageWithIndex.Image.ImgUrl" class="d-block w-100" alt="...">
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" style="background-color:black; opacity:10%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" style="background-color:black;opacity:10%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    }                
+                </div>
+            </div>
+            <div class="col-lg-7 pl-5">
+                <div class="about-content pl-5">    
+                    <h2 class="about-title">Car : @Model.Title</h2>
+                    <h2 class="about-title">OwnerName: @Model.Owner.Name</h2>
+                    <h4 class="about-title">Price : @Model.Price.ToString()</h4>
+
+                    <span class="subtitle d-block"><strong>معلومات السياره</strong></span>
+                    <p class="content content-text">
+                        <div class="car-D">
+                            <h3>Car Details</h3>                        
+                        </div>
+                        Description: @Model.Description
+                    </p>                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About -->
+ 
 <!-- start item view -->
-<div class="item-overview">
+<div class="item-overview mt-5">
     <h2 class="main-title">Item Overview</h2>
     <div class="container">
         <div class="container">
@@ -109,6 +172,7 @@
     </div>
 </div>
 <!-- end item view -->
+
 <!-- start addition details -->
 <div class="addition">
     <h2 class="main-title">Additional Details</h2>

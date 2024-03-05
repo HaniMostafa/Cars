@@ -32,6 +32,10 @@ namespace Cars.Areas.Admin.Controllers
             else
             {
                 var kindCar = _unitOfWork.KindCar.Get(a => a.Id == id);
+                if (kindCar == null)
+                {
+                    return NotFound("بس يا حبيبي");
+                }
                 return View(kindCar);
             }
         }
@@ -41,8 +45,6 @@ namespace Cars.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 if (model.Id == 0)
                 {
                     _unitOfWork.KindCar.Add(model);

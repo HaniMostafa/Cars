@@ -2,110 +2,126 @@
 <section class="home">
     <!-- Main banner with a call-to-action button -->
     <div class="home-content">
-        <h1>Car Dealing Experience.</h1>
-        <h3>Redefined!</h3>
+        <h1>معرض ابو النصر للجميع انواع السيارات</h1>
+        <h3>ابو النصر</h3>
+        <p>يتوفر لدينا جميع انواع السيارات النقل و الملاكي</p>
+        <a class="btn">لتواصل</a>
+        <div class="customclass">
+            <a href="#" class="twitter-icon" onclick="animateIcon('twitter-icon')"><i class='bx bxl-twitter'></i></a>
+            <a href="#" class="facebook-icon" onclick="animateIcon('facebook-icon')"><i class='bx bxl-facebook'></i></a>
+            <a href="#" class="instagram-icon" onclick="animateIcon('instagram-icon')"><i class='bx bxl-instagram-alt'></i></a>
+            <a href="#" class="geo-icon" onclick="animateIcon('geo-icon')"><i class="bi bi-geo-alt"></i></a>
+        </div>
     </div>
 
     <!-- Decorative image with styling in style.css -->
     <div class="home-img">
         <div class="rhombus">
-            <img src="images/car.png" alt="">
+            <img src="~/images/car.png" alt="">
         </div>
     </div>
 
     <!-- Additional decorative element -->
     <div class="rhombus2"></div>
 </section>
-<!-- end header section -->
-<!-- why section -->
-<section class="why_section layout_padding">
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h2>
-                About Me
-            </h2>
-        </div>
-    </div>
-</section>
-<section class="arrival_section">
-    <div class="container">
-        <div class="box">
-            <img class="koko" src="@Model.Owners[0].Image" width="400" height="400" alt="">
-            <div class="row">
-                <div class="col-md-6 ml-auto">
-                    <div class="heading_container remove_line_bt">
-                        <h2>
-                         Owner: @Model.Owners[0].Name
-                        </h2> 
-                        <h2>
-                       Phone : @Model.Owners[0].Phone
-                        </h2>
-                    </div>
-                    <h5 style="margin-top: 20px;margin-bottom: 30px;">
-                        يمكنك العثور على سيارات جديدة بأحدث الموديلات، بالإضافة إلى سيارات مستعملة بحالة ممتازة
-                    </h5>
 
-                    <ul style="display:flex;list-style-type: none;gap:10px;">
-                        <li> 
-                            <a href="@Model.Owners[0].FaceBookUrl"><i class="bi bi-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="@Model.Owners[0].Gps"><i class="bi bi-geo-alt"></i></a>
-                        </li>
-                        <li>
-                            <a href="@Model.Owners[0].Instigram"><i class="bi bi-instagram"></i></a>
-                        </li>
-                       
-                    </ul>
-
-                </div> 
+<!-- Start About -->
+<section id="about" class="about bg-white mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 test">
+                <div class="hero-img">
+                    <img class="w-100 rounded-image" src="@Model.Owners[0].Image">
+                </div>
+            </div>
+            <div class="col-lg-7 pl-5">
+                <div class="about-content pl-5">
+                    <h1 class="about-title">معرض ابو <b>النصر</b> للسيارات</h1>
+                    <h2 class="about-title"> المالك: @Model.Owners[0].Name</h2>
+                    <h2 class="about-title"> الهاتف : @Model.Owners[0].Phone</h2>
+                    <span class="subtitle d-block"><strong>معلومات المعرض</strong></span>
+                    <p class="content content-text">
+                        يمكنك العثور على سيارات جديدة بأحدث الموديلات، بالإضافة إلى سيارات مستعملة بحالة ممتازة <br />
+                        المعرض يوجد لديه احدث والسيارات الفاخره المزوده باحدث التكنولوجيا <br />
+                         ويمكنك الحصول علي سيارتك الخاصه بكل سهوله يوجد فريق عمل لمساعدتك <br />
+                        ونتميز بخدمه ما بعد البيع نحن هنل لمساعدتك معرض ابو النصر
+                    </p>  
+                    <div class="about-btns">
+                        <div class="customclass">
+                            <a href="#" class="twitter-icon" onclick="animateIcon('twitter-icon')"><i class='bx bxl-twitter'></i></a>
+                            <a href="#" class="facebook-icon" onclick="animateIcon('facebook-icon')"><i class='bx bxl-facebook'></i></a>
+                            <a href="#" class="instagram-icon" onclick="animateIcon('instagram-icon')"><i class='bx bxl-instagram-alt'></i></a>
+                            <a href="#" class="geo-icon" onclick="animateIcon('geo-icon')"><i class="bi bi-geo-alt"></i></a>
+                        </div>
+                    </div>      
+                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- end arrival section --><!-- end arrival section -->
+<!-- End About -->
+
 <!-- product section -->
 <section class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
-                Our <span>Cars</span>
+                <span>السيارات</span>
             </h2>
         </div>
         <div class="row">
             @foreach (var item in Model.Carss)
             {
-                
-            
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id" class="btn">
-                                Details
-                            </a>
+
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <div class="box">
+                        <div class="option_container">
+                            <div class="options">
+                                <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id" class="custom-btn">
+                                    Details
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="img-box">
-                      @if(item.CarImages!=null && item.CarImages.Count() > 0) {
-                            <img src="@item.CarImages.FirstOrDefault().ImgUrl" class="card-img-top rounded" />
-                        }
-                        else {
-                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
-                        } 
+                        <div class="img-box">
+                            @if (item.CarImages != null && item.CarImages.Count() > 0)
+                            {
+                                <img src="@item.CarImages.FirstOrDefault().ImgUrl" class="card-img-top rounded" />
+                            }
+                            else
+                            {
+                                <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                            }
                         </div>
-                    <div class="detail-box">
-                        <h5>
-                            @item.Title
-                        </h5>
-                        <h6>
+                        <div class="detail-box">
+                            <h5>
+                                @item.Title
+                            </h5>
+                            <h6>
                                 @item.Price.ToString()
-                        </h6>
+                            </h6>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
-            
         </div>
     </div>
 </section>
+<!-- end product section -->
+@section Scripts
+{
+    <script>
+        function animateIcon(iconClass) {
+            const icons = document.querySelectorAll('.' + iconClass);
+
+            icons.forEach(icon => {
+                icon.classList.add('active');
+                setTimeout(() => {
+                    icon.classList.remove('active');
+                }, 300); // Remove the 'active' class after 0.3s
+            });
+
+            // Prevent default behavior of the anchor tag
+            event.preventDefault();
+        }
+    </script>
+}

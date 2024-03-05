@@ -57,6 +57,10 @@ namespace Cars.Areas.Admin.Controllers
             else
             {
                 vm.car = _unitOfWork.car.Get(u => u.Id == id,InCludeProprty: "CarImages");
+                if (vm.car == null)
+                {
+                    return NotFound("بس يا حبيبي");
+                }
                 return View(vm);
 
             }
@@ -113,17 +117,11 @@ namespace Cars.Areas.Admin.Controllers
                     }
 
                     _unitOfWork.car.Update(obj.car);
-                    _unitOfWork.Save();
-
-              
-
-
+                    _unitOfWork.Save();          
             }
                 TempData["Success"] =" Product created / updated successfully";
 
                 return RedirectToAction("Index");
-
-
             }
             else
             {
@@ -149,13 +147,6 @@ namespace Cars.Areas.Admin.Controllers
                 return NotFound();
 
             }
-            //var OldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, ProductToBeDeleted.ImgUrl.TrimStart('\\'));
-            //if (System.IO.File.Exists(OldImagePath))
-            //{
-            //    System.IO.File.Delete(OldImagePath);
-
-
-            //}
             string productPath = @"Imagess\Cars\Car-" + id;
             string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
             if (Directory.Exists(finalPath))
@@ -171,8 +162,8 @@ namespace Cars.Areas.Admin.Controllers
             _unitOfWork.car.Remove(ProductToBeDeleted);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
-
         }
+
         public IActionResult DeleteImage(int imageId)
         {
             var imageToBeDeleted = _unitOfWork.ImageCar.Get(u => u.Id == imageId);
