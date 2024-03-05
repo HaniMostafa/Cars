@@ -2,15 +2,17 @@
 <section class="home">
     <!-- Main banner with a call-to-action button -->
     <div class="home-content">
-        <h1>معرض ابو النصر للجميع انواع السيارات</h1>
-        <h3>ابو النصر</h3>
+        <h1>معرض ارض الاحلام</h1>
+        <h2>رقم المعرض:314</h2>
+        
+        <h3> ارض الاحلام </h3>
         <p>يتوفر لدينا جميع انواع السيارات النقل و الملاكي</p>
         <a class="btn">لتواصل</a>
         <div class="customclass">
-            <a href="#" class="twitter-icon" onclick="animateIcon('twitter-icon')"><i class='bx bxl-twitter'></i></a>
-            <a href="#" class="facebook-icon" onclick="animateIcon('facebook-icon')"><i class='bx bxl-facebook'></i></a>
-            <a href="#" class="instagram-icon" onclick="animateIcon('instagram-icon')"><i class='bx bxl-instagram-alt'></i></a>
-            <a href="#" class="geo-icon" onclick="animateIcon('geo-icon')"><i class="bi bi-geo-alt"></i></a>
+            <a href=@Model.Owners[0].FaceBookUrl class="facebook-icon" ><i class='bx bxl-facebook'></i></a>
+            <a href=@Model.Owners[0].Instigram class="instagram-icon" ><i class='bx bxl-instagram-alt'></i></a>
+            <a href=@Model.Owners[0].Gps class="geo-icon" ><i class="bi bi-geo-alt"></i></a>
+            <a href=@Model.Owners[0].Olx class="facebook-icon"><i class="bi bi-whatsapp"></i></a>
         </div>
     </div>
 
@@ -26,15 +28,22 @@
 </section>
 
 <!-- Start About -->
+<div class="heading_container heading_center mb-4">
+    <h2>
+        <span>About Me</span>
+    </h2>
+</div>
 <section id="about" class="about bg-white mt-5">
+
     <div class="container">
+      
         <div class="row">
             <div class="col-lg-5 test">
                 <div class="hero-img">
                     <img class="w-100 rounded-image" src="@Model.Owners[0].Image">
                 </div>
             </div>
-            <div class="col-lg-7 pl-5">
+            <div class="col-lg-7" >
                 <div class="about-content pl-5">
                     <h1 class="about-title">معرض ابو <b>النصر</b> للسيارات</h1>
                     <h2 class="about-title"> المالك: @Model.Owners[0].Name</h2>
@@ -46,12 +55,12 @@
                          ويمكنك الحصول علي سيارتك الخاصه بكل سهوله يوجد فريق عمل لمساعدتك <br />
                         ونتميز بخدمه ما بعد البيع نحن هنل لمساعدتك معرض ابو النصر
                     </p>  
-                    <div class="about-btns">
+                    <div class="about-btns pl-5">
                         <div class="customclass">
-                            <a href="#" class="twitter-icon" onclick="animateIcon('twitter-icon')"><i class='bx bxl-twitter'></i></a>
-                            <a href="#" class="facebook-icon" onclick="animateIcon('facebook-icon')"><i class='bx bxl-facebook'></i></a>
-                            <a href="#" class="instagram-icon" onclick="animateIcon('instagram-icon')"><i class='bx bxl-instagram-alt'></i></a>
-                            <a href="#" class="geo-icon" onclick="animateIcon('geo-icon')"><i class="bi bi-geo-alt"></i></a>
+                            <a href=@Model.Owners[0].FaceBookUrl class="facebook-icon"><i class='bx bxl-facebook'></i></a>
+                            <a href=@Model.Owners[0].Instigram class="instagram-icon"><i class='bx bxl-instagram-alt'></i></a>
+                            <a href=@Model.Owners[0].Gps class="geo-icon"><i class="bi bi-geo-alt"></i></a>
+                            <a href=@Model.Owners[0].Olx class="facebook-icon"><i class="bi bi-whatsapp"></i></a>
                         </div>
                     </div>      
                 </div>
@@ -62,7 +71,7 @@
 <!-- End About -->
 
 <!-- product section -->
-<section class="product_section layout_padding">
+<section id="product_section" class="product_section layout_padding">
     <div class="container">
         <div class="heading_container heading_center">
             <h2>
@@ -97,7 +106,7 @@
                                 @item.Title
                             </h5>
                             <h6>
-                                @item.Price.ToString()
+                          @item.Price.ToString("C2", new System.Globalization.CultureInfo("ar-AE"))
                             </h6>
                         </div>
                     </div>
@@ -107,21 +116,3 @@
     </div>
 </section>
 <!-- end product section -->
-@section Scripts
-{
-    <script>
-        function animateIcon(iconClass) {
-            const icons = document.querySelectorAll('.' + iconClass);
-
-            icons.forEach(icon => {
-                icon.classList.add('active');
-                setTimeout(() => {
-                    icon.classList.remove('active');
-                }, 300); // Remove the 'active' class after 0.3s
-            });
-
-            // Prevent default behavior of the anchor tag
-            event.preventDefault();
-        }
-    </script>
-}

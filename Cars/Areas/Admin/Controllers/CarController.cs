@@ -27,7 +27,7 @@ namespace Cars.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Car> Cars = _unitOfWork.car.GetAll(InCludeProprty: "KindOfCar-Owner");
+            IEnumerable<Car> Cars = _unitOfWork.car.GetAll(InCludeProprty: "KindOfCar-Owner-CarImages");
 
             return View(Cars);
         }

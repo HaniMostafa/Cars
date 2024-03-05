@@ -15,6 +15,7 @@ namespace Models
         public string Horsepower { get; set; }
         public string Color { get; set; }
         public string BodyType{ get; set; }
+        [ValidateNever]
         public double  Price { get; set; }
         //public string ? ImgUrl{ get; set; }
         [ValidateNever]
