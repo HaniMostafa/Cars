@@ -121,8 +121,7 @@
     transform: scale(0.9);
 }
 
-.item-overview .container .container {
-    transform: translateX(10%);
+.item-overview .container .container {  
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
     gap: 20px;
